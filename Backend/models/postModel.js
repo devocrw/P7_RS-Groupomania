@@ -7,7 +7,7 @@ const mysql = require('mysql');
 class PostModel {
     constructor() {
     }
-
+    // CRÉATION DES POSTS //
     createPost(sqlInserts) {
         console.log(sqlInserts)
         let sql = 'INSERT INTO posts(userId, title, content, date , likes ) VALUES( ?, ?, ?, NOW(), 0)';
@@ -19,7 +19,7 @@ class PostModel {
             })
         })
     };
-
+    // MODIFICATIONS DES POSTS //
     updatePost(sqlInsert1, sqlInsert2) { // possibilité de modifier uniquement ses propres posts
         let sql_request1 = 'SELECT * FROM posts where id = ?'; // Première requête SELECT pour sélectionner le post 
         sql_request1 = mysql.format(sql_request1, sqlInsert1);
@@ -39,7 +39,7 @@ class PostModel {
             })
         })
     };
-
+    // SUPPRESSION DES POSTS //
     deletePost(sqlInsert1, sqlInsert2) { // possibilité de supprimer uniquement ses propres posts
         let sql_request1 = 'SELECT * FROM posts where id = ?'; // requête SELECT pour sélectionner le post à supprimer
         sql_request1 = mysql.format(sql_request1, sqlInsert1);
@@ -59,7 +59,7 @@ class PostModel {
             })
         })
     };
-
+    // LIKER LES POSTS //
     postLike(sqlInsert1, sqlInsert2, liked) { // ajouter ou enlever un like
         let sql_request1 = 'INSERT INTO likes VALUES (NULL, ?, ?)'; // requête pour insérer un like
         sql_request1 = mysql.format(sql_request1, sqlInsert1);
