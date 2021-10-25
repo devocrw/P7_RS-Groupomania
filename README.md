@@ -18,6 +18,7 @@ Connectez-vous à la base de données
 - Utilisez la base de données crééé: USE groupomania;
 - Dirigez-vous dans le dossier backend
 - Ouvrez le fichier connectdb.js et renseignez votre mot passe MySQL dans password
+- Pour se connecter avec le compte moderateur ajouter dans Mysql :  update users set moderation = 1 where id = 1;
 
 Installez et démarrez le backend
 -----------------------------------------------
