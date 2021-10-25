@@ -14,32 +14,50 @@ const routes = [
   {
     path: '/',
     name: 'Auth',
-    component: Auth
+    component: Auth,
+    meta: {
+      isPublic: true
+    }
   },
   {
     path: '/Accueil',
     name: 'Accueil',
-    component: Accueil
+    component: Accueil,
+    meta: {
+      isPublic: false
+    }
   },
   {
     path: '/Accueil/Profil',
     name: 'Profil',
-    component: Profil
+    component: Profil,
+    meta: {
+      isPublic: false
+    }
   },
   {
     path: '/Accueil/Forum',
     name: 'Forum',
-    component: Forum
+    component: Forum,
+    meta: {
+      isPublic: false
+    }
   },
   {
     path: '/Accueil/Forum/Post',
     name: 'Post',
-    component: Post
+    component: Post,
+    meta: {
+      isPublic: false
+    }
   },
   {
     path: '/Accueil/Moderation',
     name: 'Moderation',
-    component: Moderation
+    component: Moderation,
+    meta: {
+      isPublic: false
+    }
   },
 ]
 
@@ -47,5 +65,13 @@ const router = new VueRouter({
   routes,
   mode: 'history'
 })
+
+router.beforeResolve(async (to, from, next) => {
+  if ((localStorage.token === "" || localStorage.token === undefined) && to.path != '/') {
+    next("/")
+  } else {
+    next();
+  }
+});
 
 export default router
